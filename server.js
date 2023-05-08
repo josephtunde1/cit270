@@ -19,5 +19,14 @@ app.get('/', (reg, res) =>{
 app.post('/login',(req,res)=>{
     const loginBody = req.body;
     const userName = loginBody.userName;
+    const password = loginBody.password;
+    if (password==="Perola95!"){
+    //this happens if the password is correct
     res.send("Welcome "+userName);
+    } else {
+    //this happens if the password is not correct
+    res.status(401);//unauthorized
+    res.send("Incorrect password");
+}
+
 });
