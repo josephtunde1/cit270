@@ -2,7 +2,7 @@ const express=require('express');
 const bodyParser = require('body-parser');
 const Redis = require('redis');
 
-import { createhash } from node:crypto ;
+const { createHash } = require('node:crypto');
 
 const app = express();
 const port = 3000
@@ -24,11 +24,11 @@ app.post('/login',async (req,res)=>{
     const loginBody = req.body;
     const userName = loginBody.userName;
     const password = loginBody.password; //we need to hash the password the user gave us
-
+    const hashedpassword = createHash('sha3-256').update(password).digegst('hex');
     const redisPassword = await redisClient.hGet("hashedpasswords", userName);
     console.log("password for "+userName + redisPassword);
 
-    if (redisPassword!=null && password===redisPassword) {
+    if (hashedPassword===redisPassword) {
     //this happens if the password is correct
     res.send('Welcome, $(userName)!');
     } else {
