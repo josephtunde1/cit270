@@ -8,7 +8,7 @@ const https = require('https')
 
 const app = express();
 
-const port = 3000
+const port = 443;
 
 const redisClient = Redis.createClient({url:'redis://127.0.0.1:6379'});
 
@@ -18,9 +18,9 @@ https.createServer({
     //key: fs.readFileSync('server.key'),
     //cert: fs.readFileSync('server.cert'),
     key: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/privkey1.pem'), //This is a private key
-    cert: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/cert1.pem'),
-    chain: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/fullchain1.pem') //This is a self-signed certification
-  }, app).listen(3000, () => {
+    cert: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/cert1.pem'), //This is a signed certificate
+    chain: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/fullchain1.pem') //This is the certificate chain
+  }, app).listen(443, () => {
     redisClient.connect(); 
     console.log('Listening...')
   });
