@@ -8,22 +8,28 @@ const https = require('https')
 
 const app = express();
 
-const port = 443;
+const port = 3000;
 
 const redisClient = Redis.createClient({url:'redis://127.0.0.1:6379'});
 
 app.use(bodyParser.json()); //allow JSON (Javascript Object notation) requests
 
-https.createServer({
-    //key: fs.readFileSync('server.key'),
-    //cert: fs.readFileSync('server.cert'),
-    key: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/privkey1.pem'), //This is a private key
-    cert: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/cert1.pem'), //This is a signed certificate
-    ca: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/chain1.pem') //This is the certificate chain
-  }, app).listen(443, () => {
-    redisClient.connect(); 
-    console.log('Listening...')
-  });
+
+app.listen(port, ()=>{
+  redisClient.connect();
+  console.log("Listening on port..: " + port);
+});
+
+// https.createServer({
+//     //key: fs.readFileSync('server.key'),
+//     //cert: fs.readFileSync('server.cert'),
+//     key: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/privkey1.pem'), //This is a private key
+//     cert: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/cert1.pem'), //This is a signed certificate
+//     ca: fs.readFileSync('/etc/letsencrypt/archive/josephtunde.cit270.com/chain1.pem') //This is the certificate chain
+//   }, app).listen(443, () => {
+//     redisClient.connect(); 
+//     console.log('Listening...')
+//   });
   
 //app.listen(port, ()=>{
     //redisClient.connect(); //the API server is trying to connect with Redis
