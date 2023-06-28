@@ -24,7 +24,7 @@ spec:
 # name of container      
       - name: cit270tundeservice
 # Docker image registry      
-        image:    #paste here from artifact registry pls :)
+        image:   us-docker.pkg.dev/captain-americas-big-hat/tunde-token-api/image
 # First part of the command to start our API          
         command: ["npm"]
 # Parameters to add to the command        
