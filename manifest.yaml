@@ -58,10 +58,10 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: stedi-tunde-certificate
+  name: stedi-tunde-certificate2
 spec:
   domains:
-    - tunde.cit270.com # this needs to be your domain name from DNS
+    - josephtunde.cit270.com # this needs to be your domain name from DNS
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -71,7 +71,7 @@ metadata:
   # Use this command to find the address name: gcloud compute addresses list 
     kubernetes.io/ingress.global-static-ip-name: cit270tunde
   # needs to match the name of the ManagedCertificate (line 75)
-    networking.gke.io/managed-certificates: stedi-tunde-certificate
+    networking.gke.io/managed-certificates: stedi-tunde-certificate2
 spec:
   rules:
   - http:
