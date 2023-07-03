@@ -10,7 +10,7 @@ const app = express();
 
 const port = 3000;
 
-const redisClient = Redis.createClient({url:'redis://default:PasswOrd@redis-stedi-tunde:6379'});
+const redisClient = Redis.createClient({url:'redis://default:redis-stedi-tunde:6379'});
 
 app.use(bodyParser.json()); //allow JSON (Javascript Object notation) requests
 
