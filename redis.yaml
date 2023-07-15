@@ -21,6 +21,13 @@ spec:
           ports:
             - containerPort: 6379
               name: redis
+          env:
+          - name: REDIS_PASS
+            valueFrom:
+              secretKeyRef:
+                name:redis-secrerts-tunde
+                key: REDIS_PASS
+                
           volumeMounts:
             - name: redis-tunde-volume
               mountPath: /data
