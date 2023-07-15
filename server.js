@@ -19,6 +19,7 @@ const redisClient = Redis.createClient({
         }
     });
 
+app.use(bodyParser.json())
 
 app.listen(port, ()=>{
   redisClient.connect();
